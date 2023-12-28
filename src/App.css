@@ -1,0 +1,12 @@
+body {
+  background-image: url("../public/back.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: auto; /* Updated to auto to allow content to determine height */
+  min-height: 100vh; /* Ensures minimum viewport height */
+  font-family: 'Poppins', sans-serif;
+  background-attachment: fixed; /* Keeps the background fixed while scrolling */
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
