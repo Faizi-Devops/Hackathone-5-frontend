@@ -5,9 +5,15 @@ import { Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 const Login = () => {
   const [flag, setFlag] = useState(false);
+
   const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
+  const togglePasswordVisibility = () => {
+    setShowPassword(prevState => !prevState);
+  };
   const formik = useFormik({
     initialValues: {
       userEmail: "",
@@ -87,20 +93,29 @@ const Login = () => {
               {formik.errors.userEmail}
             </div>
           ) : null}
-          <input
-            type="password"
-            id="first_name"
-            name="userPassword"
-            value={formik.values.userPassword}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            className={`bg-gray-50 mt-3 border text-gray-900 text-sm rounded-lg block w-full p-2.5 focus:outline-none dark:bg-gray-700 dark:text-white dark:focus:outline-none dark:placeholder-gray-400 ${
-              formik.touched.userPassword && formik.errors.userPassword
-                ? "border-red-500" // Apply red border only when there's an error
-                : "border-gray-300 focus:border-gray-300" // Default and focus border colors
-            }`}
-            placeholder="Password......."
-          ></input>
+          <div className="relative">
+      <input
+        type={showPassword ? 'text' : 'password'}
+        id="userPassword"
+        name="userPassword"
+        value={formik.values.userPassword}
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
+        className={`bg-gray-50 mt-3 border text-gray-900 text-sm rounded-lg block w-full p-2.5 focus:outline-none dark:bg-gray-700 dark:text-white dark:focus:outline-none dark:placeholder-gray-400 ${
+          formik.touched.userPassword && formik.errors.userPassword
+            ? 'border-red-500'
+            : 'border-gray-300 focus:border-gray-300'
+        }`}
+        placeholder="Password......."
+      />
+      <button
+        type="button"
+        className="absolute inset-y-0 right-2 flex items-center"
+        onClick={togglePasswordVisibility}
+      >
+        {showPassword ? <FaEyeSlash /> : <FaEye />}
+      </button>
+    </div>
           {formik.touched.userPassword && formik.errors.userPassword ? (
             <div className="text-red-500 text-xs">
               {formik.errors.userPassword}
