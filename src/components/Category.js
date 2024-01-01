@@ -271,6 +271,7 @@ console.log(e.target.value)
                 
             </tr>
         </thead>
+       
         {
             data?.map((value,index)=>{
                 return(

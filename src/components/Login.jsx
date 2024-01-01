@@ -123,9 +123,9 @@ const Login = () => {
           ) : null}
           <Link to="/Register">
             <div className="text-end text-sm pt-3 ">
-              <span>
+              
                 <span className="hover:cursor-pointer">Register</span>
-              </span>
+              
             </div>
           </Link>
           <div className="text-center pt-4">

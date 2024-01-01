@@ -6,9 +6,18 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 const Register = () => {
   const [flag, setFlag] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [pass,setPass]=useState(false)
+  const togglePasswordVisibility = () => {
+    setShowPassword(prevState => !prevState);
+  };
+  const toggle = () => {
+    setPass(prevState => !prevState);
+  };
   const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
@@ -135,7 +144,30 @@ const Register = () => {
               {formik.errors.userEmail}
             </div>
           ) : null}
-          <input
+          <div className="relative">
+      <input
+        type={showPassword ? 'text' : 'password'}
+        id="userPassword"
+        name="userPassword"
+        value={formik.values.userPassword}
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
+        className={`bg-gray-50 mt-3 border text-gray-900 text-sm rounded-lg block w-full p-2.5 focus:outline-none dark:bg-gray-700 dark:text-white dark:focus:outline-none dark:placeholder-gray-400 ${
+          formik.touched.userPassword && formik.errors.userPassword
+            ? 'border-red-500'
+            : 'border-gray-300 focus:border-gray-300'
+        }`}
+        placeholder="Password......."
+      />
+      <button
+        type="button"
+        className="absolute inset-y-0 right-2 flex items-center"
+        onClick={togglePasswordVisibility}
+      >
+        {showPassword ? <FaEyeSlash /> : <FaEye />}
+      </button>
+    </div>
+          {/* <input
             type="password"
             id="first_name"
             name="userPassword"
@@ -148,26 +180,35 @@ const Register = () => {
                 : 'border-gray-300 focus:border-gray-300' // Default and focus border colors
             }`}
             placeholder="Password......."
-          ></input>
+          ></input> */}
           {formik.touched.userPassword && formik.errors.userPassword ? (
             <div className="text-red-500 text-xs">
               {formik.errors.userPassword}
             </div>
           ) : null}
-          <input
-            type="password"
-            id="first_name"
-            name="userConfirm"
-            value={formik.values.userConfirm}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            className={`bg-gray-50 mt-3 border text-gray-900 text-sm rounded-lg block w-full p-2.5 focus:outline-none dark:bg-gray-700 dark:text-white dark:focus:outline-none dark:placeholder-gray-400 ${
-              formik.touched.userConfirm && formik.errors.userConfirm
-                ? 'border-red-500' // Apply red border only when there's an error
-                : 'border-gray-300 focus:border-gray-300' // Default and focus border colors
-            }`}
-            placeholder="Confirm Password......."
-          ></input>
+          <div className="relative">
+      <input
+        type={pass ? 'text' : 'password'}
+        id="userConfirm"
+        name="userConfirm"
+        value={formik.values.userConfirm}
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
+        className={`bg-gray-50 mt-3 border text-gray-900 text-sm rounded-lg block w-full p-2.5 focus:outline-none dark:bg-gray-700 dark:text-white dark:focus:outline-none dark:placeholder-gray-400 ${
+          formik.touched.userConfirm && formik.errors.userConfirm
+            ? 'border-red-500'
+            : 'border-gray-300 focus:border-gray-300'
+        }`}
+        placeholder="Confirm Password......."
+      />
+      <button
+        type="button"
+        className="absolute inset-y-0 right-2 flex items-center"
+        onClick={toggle}
+      >
+        {pass ? <FaEyeSlash /> : <FaEye />}
+      </button>
+    </div>
           {formik.touched.userConfirm && formik.errors.userConfirm ? (
             <div className="text-red-500 text-xs">
               {formik.errors.userConfirm}
