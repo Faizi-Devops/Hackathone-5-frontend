@@ -69,7 +69,7 @@ const Login = () => {
   return (
     <div className="flex justify-center items-center h-screen px-[1rem]">
       <ToastContainer />
-      <div class="block max-w-sm w-full p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+      <div class="block max-w-sm w-full p-6 bg-white border border-gray-200 rounded-lg shadow   ">
         <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white text-center pb-2">
           Login
         </h5>
@@ -77,7 +77,7 @@ const Login = () => {
           <input
             type="email"
             id="first_name"
-            className={`bg-gray-50 mt-3 border text-gray-900 text-sm rounded-lg block w-full p-2.5 focus:outline-none dark:bg-gray-700 dark:text-white dark:focus:outline-none dark:placeholder-gray-400 ${
+            className={`bg-gray-50 mt-3 border text-gray-900 text-sm rounded-lg block w-full p-2.5 focus:outline-none    ${
               formik.touched.userEmail && formik.errors.userEmail
                 ? "border-red-500" // Apply red border only when there's an error
                 : "border-gray-300 focus:border-gray-300" // Default and focus border colors
